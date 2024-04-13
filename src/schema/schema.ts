@@ -1,11 +1,14 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import "graphql-import-node";
-import typeDefs from "./schema.graphql";
+import { createSchema } from "graphql-yoga";
 
-const resolvers = {
-  Query: {
-    info: () => "Testing",
+export const schema = createSchema({
+  typeDefs: `
+    type Query {
+      info: String
+    }
+  `,
+  resolvers: {
+    Query: {
+      info: () => "Testing",
+    },
   },
-};
-
-export const schema = makeExecutableSchema({ typeDefs, resolvers });
+});
